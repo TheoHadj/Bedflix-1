@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Hello VideoController!
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <style>
+    /* Centrer le formulaire */
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    /* Applique une bordure autour du formulaire */
+    #video {
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      margin: 10px;
+    }
+    
+    /* Écarte les lignes les unes des autres */
+    form div {
+      margin: 10px;
+    }
+    
+    /* Écarte les labels des inputs */
+    form div label {
+      padding-right: 1em;
+    }
+    
+    /* Arrange pour coller les inputs et labels aux extrêmités */
+    #video div {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    
+    /* Centre le bouton d'envoi */
+    #video div:nth-of-type(7) {
+      justify-self: center;
+    }
+    
+    /* Applique un style au bouton d'envoi */
+    #video_submit {
+      background-color: green;
+      padding: 2px 5px;
+      border: 1px solid black;
+      border-radius: 5px;
+      color: white;
+    }
+    
+    /* Change le comportement par défaut de Tailwind */
+    #video button,
+    #video input,
+    #video optgroup,
+    #video select,
+    #video textarea {
+      color: initial;
+    }
+  </style>
+{% endblock %}
+
+{% block body %}
+  {{ form_start(form) }}
+  {{ form(form) }}
+  {{ form_end(form) }}
+{% endblock %}
