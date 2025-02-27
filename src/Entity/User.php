@@ -7,6 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
@@ -34,12 +36,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\Length(
+        min: 4,
+        max: 50,
+        minMessage: 'Le nom doit contenir au moins {{ limit }} caractères ',
+        maxMessage: 'Le nom ne doit pas dépasser {{ limit }} caractères',
+        )]
     private ?string $nom = null;
 
+
     #[ORM\Column(length: 50)]
+    #[Assert\Length(
+        min: 4,
+        max: 50,
+        minMessage: 'Le prenom doit contenir au moins {{ limit }} caractères ',
+        maxMessage: 'Le prenom ne doit pas dépasser {{ limit }} caractères',
+        )]
     private ?string $prenom = null;
 
     #[ORM\Column]
+    #[Assert\Type('bool')]
     private ?bool $activate = null;
 
     public function __construct()
